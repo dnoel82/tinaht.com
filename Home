@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Website</title>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <!-- Header section -->
+        <div id="header">
+            <h1>Your Name</h1>
+            <p>Your tagline or motto</p>
+        </div>
+        <!-- Navigation section -->
+        <div id="nav">
+            <ul>
+                <li><a href="#bio">Bio</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <!-- Main section -->
+        <div id="main">
+            <!-- Bio section -->
+            <div id="bio">
+                <h2>Bio</h2>
+                <img src="your_photo.jpg" alt="Your photo" width="200" height="200">
+                <p>Write a brief introduction about yourself here. You can include your background, interests, goals, etc.</p>
+            </div>
+            <!-- Resume section -->
+            <div id="resume">
+                <h2>Resume</h2>
+                <h3>Education</h3>
+                <ul>
+                    <li>List your education history here. Include the name of the institution, the degree, the major, and the year of graduation.</li>
+                    <li>For example: Bachelor of Science in Computer Science, University of XYZ, 2020.</li>
+                </ul>
+                <h3>Work Experience</h3>
+                <ul>
+                    <li>List your work experience here. Include the name of the organization, the position, the duration, and the main responsibilities.</li>
+                    <li>For example: Software Engineer, ABC Inc., Jan 2021 - Present. Developed web applications using HTML, CSS, and Javascript.</li>
+                </ul>
+                <h3>Skills</h3>
+                <ul>
+                    <li>List your skills here. Include both technical and soft skills.</li>
+                    <li>For example: HTML, CSS, Javascript, Python, Java, C++, SQL, Git, Communication, Teamwork, Problem-solving, etc.</li>
+                </ul>
+                <h3>Hobbies</h3>
+                <ul>
+                    <li>List your hobbies here. Include anything that you enjoy doing in your spare time.</li>
+                    <li>For example: Reading, Writing, Gaming, Cooking, Traveling, etc.</li>
+                </ul>
+            </div>
+            <!-- Contact section -->
+            <div id="contact">
+                <h2>Contact</h2>
+                <p>If you want to get in touch with me, you can use any of the following methods:</p>
+                <ul>
+                    <li>Email: your_email@example.com</li>
+                    <li>Phone: +1-234-567-8910</li>
+                    <li>LinkedIn: https://www.linkedin.com/in/your_name/</li>
+                    <li>GitHub: https://github.com/your_username/</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Footer section -->
+        <div id="footer">
+            <p>© 2024 Your Name. All rights reserved.</p>
+        </div>
+    </div>
+    <!-- Link to your Javascript file -->
+    <script src="script.js"></script>
+</body>
+</html>
