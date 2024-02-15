@@ -1,2 +1,2 @@
 # tinaht.com
-access to my tinaht
+# access to my tinaht
