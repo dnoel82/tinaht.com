@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "ecommerce-workflow-automation",
+    "title": "E-commerce Workflow Automation",
+    "category": "AI Automation",
+    "shortDescription": "Automated order processing and inventory management for a growing online retailer, reducing manual tasks by 80%.",
+    "fullDescription": "A comprehensive automation solution that streamlined the entire order fulfillment pipeline for a mid-size e-commerce company. The system handles order intake, inventory checks, supplier communications, shipping label generation, and customer notifications — all without manual intervention.",
+    "challenge": "The client was processing over 500 orders daily with a small team, leading to frequent errors, delayed shipments, and poor customer satisfaction scores. Manual data entry between their Shopify store, warehouse system, and shipping providers was consuming 30+ hours per week.",
+    "solution": "We designed and implemented an AI-powered automation pipeline using n8n workflows and custom API integrations. The system automatically syncs orders from Shopify, validates inventory in real-time, generates optimized picking lists, creates shipping labels via API, and sends personalized tracking notifications to customers.",
+    "result": "Order processing time dropped from 15 minutes to under 30 seconds per order. Manual tasks were reduced by 80%, shipping errors decreased by 95%, and customer satisfaction scores improved from 3.2 to 4.8 stars. The client was able to handle 3x order volume without adding staff.",
+    "technologies": ["n8n", "Python", "Shopify API", "ShipStation", "PostgreSQL", "Docker"],
+    "clientName": "RetailFlow Co.",
+    "completionDate": "2026-01-15"
+  },
+  {
+    "slug": "multi-tenant-docker-platform",
+    "title": "Multi-Tenant Docker Platform",
+    "category": "Hosting & DevOps",
+    "shortDescription": "Built and deployed a containerized hosting platform serving 50+ client applications with automated CI/CD pipelines.",
+    "fullDescription": "A fully managed multi-tenant hosting platform built on Docker Swarm with automated deployment pipelines, real-time monitoring, and self-healing capabilities. Each tenant gets isolated resources with custom domain support and automatic SSL provisioning.",
+    "challenge": "The client, a web agency, was managing 50+ client websites across multiple shared hosting accounts. Deployments were manual via FTP, there was no monitoring, and one client's traffic spike could bring down other sites. They needed a scalable, isolated hosting solution.",
+    "solution": "We architected a Docker Swarm cluster with Traefik as the reverse proxy for automatic SSL and routing. Each client application runs in isolated containers with resource limits. We implemented GitOps-based deployments — pushing to a branch triggers automated builds, tests, and zero-downtime deployments. Prometheus and Grafana provide real-time monitoring with alerting.",
+    "result": "Deployment time went from 30 minutes of manual FTP to under 2 minutes of automated CI/CD. Uptime improved from 97% to 99.95%. The agency can now onboard new clients in minutes instead of hours, and resource isolation eliminated cross-client performance issues entirely.",
+    "technologies": ["Docker", "Docker Swarm", "Traefik", "GitHub Actions", "Prometheus", "Grafana", "Let's Encrypt"],
+    "clientName": "WebCraft Agency",
+    "completionDate": "2025-11-20"
+  },
+  {
+    "slug": "enterprise-campus-network",
+    "title": "Enterprise Campus Network Redesign",
+    "category": "Networking",
+    "shortDescription": "Complete network infrastructure overhaul for a 500-employee enterprise, improving uptime to 99.99% SLA.",
+    "fullDescription": "A ground-up redesign of the campus network for a 500-employee financial services company across three buildings. The project included new core and distribution switching, enterprise-grade wireless, network segmentation, and comprehensive monitoring.",
+    "challenge": "The client's aging network infrastructure was causing frequent outages, slow inter-building communication, and security vulnerabilities. The flat network design meant a single broadcast storm could impact the entire organization. Wi-Fi coverage was inconsistent, and there was no visibility into network performance.",
+    "solution": "We designed a hierarchical three-tier network architecture with redundant core switches, VLANs for department segmentation, and inter-building fiber links. Enterprise-grade Aruba access points were deployed for seamless roaming. We implemented 802.1X authentication, network access control, and deployed a SIEM for real-time threat detection. A dedicated management VLAN with SNMP monitoring provides full visibility.",
+    "result": "Network uptime improved from 98.5% to 99.99%. Inter-building latency dropped from 45ms to under 2ms. The wireless network now supports 1,200+ concurrent devices with seamless roaming. Security incidents decreased by 70% with proper segmentation and NAC policies.",
+    "technologies": ["Cisco Catalyst", "Aruba Wireless", "Palo Alto Firewall", "802.1X", "OSPF", "Nagios", "Fiber Optics"],
+    "clientName": "Meridian Financial Group",
+    "completionDate": "2025-09-10"
+  },
+  {
+    "slug": "vulnerability-assessment-program",
+    "title": "Comprehensive Vulnerability Assessment",
+    "category": "Cybersecurity",
+    "shortDescription": "Designed and executed a full vulnerability assessment program for a healthcare provider, achieving HIPAA compliance.",
+    "fullDescription": "A thorough security assessment and remediation program for a regional healthcare provider with 12 clinic locations. The engagement covered network penetration testing, application security review, policy development, and staff security awareness training.",
+    "challenge": "The healthcare provider had never undergone a formal security assessment and was facing an upcoming HIPAA audit. They had no documented security policies, outdated firewall rules, unpatched systems, and staff with no security awareness training. Patient data was at significant risk.",
+    "solution": "We conducted a comprehensive vulnerability assessment using industry-standard tools and methodologies. This included external and internal network penetration testing, web application security scanning, wireless security audits, and social engineering tests. We developed a prioritized remediation roadmap, created security policies and procedures, and delivered a staff training program with phishing simulations.",
+    "result": "Identified and remediated 47 critical and high-severity vulnerabilities before the HIPAA audit. The client passed their compliance audit with zero findings. Phishing susceptibility dropped from 34% to 5% after training. A continuous vulnerability management program now runs quarterly scans automatically.",
+    "technologies": ["Nessus", "Burp Suite", "Metasploit", "Wireshark", "KnowBe4", "Nmap", "OSSEC"],
+    "clientName": "CareFirst Medical Group",
+    "completionDate": "2025-12-01"
+  },
+  {
+    "slug": "saas-performance-optimization",
+    "title": "SaaS Platform Speed Optimization",
+    "category": "Web Optimization",
+    "shortDescription": "Reduced page load times by 70% for a SaaS platform, improving conversion rates and user engagement metrics.",
+    "fullDescription": "A comprehensive performance optimization engagement for a B2B SaaS platform experiencing slow load times and high bounce rates. The project covered frontend optimization, backend query tuning, CDN configuration, and caching strategy implementation.",
+    "challenge": "The client's SaaS dashboard was taking 8-12 seconds to load, causing a 45% bounce rate on the pricing page and significant churn. The application had grown organically with unoptimized database queries, uncompressed assets, no CDN, and render-blocking resources. Mobile performance was particularly poor.",
+    "solution": "We performed a full performance audit using Lighthouse, WebPageTest, and custom profiling. Frontend fixes included code splitting, lazy loading, image optimization (WebP conversion), critical CSS extraction, and tree shaking. Backend improvements included query optimization, Redis caching for hot data, and connection pooling. We configured Cloudflare CDN with edge caching and implemented service worker caching for returning users.",
+    "result": "Page load time dropped from 8.2s to 2.4s (70% improvement). Lighthouse performance score went from 31 to 94. Bounce rate on the pricing page decreased from 45% to 18%. Mobile Time to Interactive improved by 65%. The client reported a 23% increase in trial signups within the first month.",
+    "technologies": ["Webpack", "Cloudflare", "Redis", "PostgreSQL", "Lighthouse", "WebPageTest", "Service Workers"],
+    "clientName": "AnalyticsPro Inc.",
+    "completionDate": "2026-02-05"
+  },
+  {
+    "slug": "ai-chatbot-customer-support",
+    "title": "AI Customer Support Chatbot",
+    "category": "AI Automation",
+    "shortDescription": "Deployed an AI-powered chatbot handling 70% of customer inquiries autonomously for a fintech startup.",
+    "fullDescription": "An intelligent customer support chatbot built with natural language processing capabilities, integrated with the client's knowledge base, CRM, and ticketing system. The bot handles common inquiries, escalates complex issues to human agents, and learns from interactions over time.",
+    "challenge": "The fintech startup was growing rapidly but couldn't scale their 5-person support team fast enough. Average response time was 4 hours, customer satisfaction was declining, and support costs were consuming 30% of revenue. They needed 24/7 coverage without hiring an overnight team.",
+    "solution": "We built a custom AI chatbot using LLM technology fine-tuned on the client's knowledge base and past support conversations. The bot integrates with their Zendesk ticketing system for seamless handoff to human agents when needed. It handles account inquiries, transaction lookups, FAQ responses, and basic troubleshooting. A feedback loop continuously improves responses based on customer ratings and agent corrections.",
+    "result": "The chatbot now handles 70% of all customer inquiries without human intervention. Average response time dropped from 4 hours to 15 seconds for bot-handled queries. Customer satisfaction improved from 3.1 to 4.5 stars. Support costs decreased by 45%, and the human team now focuses exclusively on complex, high-value interactions.",
+    "technologies": ["Python", "LangChain", "OpenAI API", "Zendesk API", "FastAPI", "Redis", "Docker"],
+    "clientName": "PayStream Finance",
+    "completionDate": "2026-02-20"
+  }
+]

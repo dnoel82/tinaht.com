@@ -1,0 +1,590 @@
+/* ============================================================
+   PORTFOLIO.CSS -- Portfolio Section Styles
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Page Hero (shared inner-page hero)
+   ------------------------------------------------------------ */
+.page-hero {
+  position: relative;
+  padding: calc(var(--header-height) + 60px) 0 60px;
+  background: var(--color-gray-900);
+  text-align: center;
+  overflow: hidden;
+}
+
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(50, 150, 255, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(0, 49, 116, 0.08) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  margin-bottom: 16px;
+}
+
+.page-hero p {
+  color: var(--color-gray-400);
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-family: var(--font-nav);
+  font-size: var(--fs-small);
+}
+
+.breadcrumb a {
+  color: var(--color-gray-500);
+  transition: color var(--transition-speed);
+}
+
+.breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.breadcrumb .breadcrumb__sep {
+  color: var(--color-gray-500);
+}
+
+.breadcrumb .breadcrumb__current {
+  color: var(--color-gray-300);
+}
+
+/* ------------------------------------------------------------
+   2. Filter Bar
+   ------------------------------------------------------------ */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.filter-btn {
+  font-family: var(--font-nav);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 24px;
+  border: 1px solid var(--color-gray-700);
+  background: transparent;
+  color: var(--color-gray-400);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.filter-btn.is-active {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  color: var(--color-white);
+}
+
+/* ------------------------------------------------------------
+   3. Portfolio Grid
+   ------------------------------------------------------------ */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap-desktop);
+}
+
+.portfolio-card {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.portfolio-card.is-hidden {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+.portfolio-card .card__image {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-card .card__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card hover: subtle scale on image */
+.portfolio-card:hover .card__image img,
+.portfolio-card:hover .card__image .placeholder-image {
+  transform: scale(1.05);
+}
+
+.portfolio-card .card__image img,
+.portfolio-card .card__image .placeholder-image {
+  transition: transform 0.4s ease;
+}
+
+/* Empty state */
+.portfolio-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-gray-500);
+  font-size: 18px;
+}
+
+/* Loading state */
+.portfolio-loading {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--color-gray-500);
+}
+
+.portfolio-loading__spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--color-gray-700);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ------------------------------------------------------------
+   4. Project Detail -- Hero
+   ------------------------------------------------------------ */
+.project-hero {
+  position: relative;
+  padding: calc(var(--header-height) + 40px) 0 40px;
+  background: var(--color-gray-900);
+}
+
+.project-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0.08;
+}
+
+.project-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.project-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.project-hero__date {
+  font-family: var(--font-nav);
+  font-size: var(--fs-small);
+  color: var(--color-gray-500);
+}
+
+.project-hero h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  margin-bottom: 16px;
+}
+
+.project-hero__description {
+  color: var(--color-gray-300);
+  font-size: 18px;
+  max-width: 720px;
+  line-height: 1.7;
+}
+
+/* Hero image banner */
+.project-hero__banner {
+  margin-top: 32px;
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  aspect-ratio: 21 / 9;
+}
+
+.project-hero__banner .placeholder-image {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+
+/* ------------------------------------------------------------
+   5. Challenge / Solution / Result
+   ------------------------------------------------------------ */
+.project-csr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap-desktop);
+}
+
+.project-csr__item {
+  background: var(--color-gray-900);
+  border: 1px solid var(--color-gray-700);
+  border-radius: var(--card-radius);
+  padding: 32px 24px;
+}
+
+.project-csr__icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.project-csr__icon--challenge {
+  background: rgba(252, 129, 129, 0.1);
+  color: var(--color-error);
+}
+
+.project-csr__icon--solution {
+  background: rgba(50, 150, 255, 0.1);
+  color: var(--color-primary);
+}
+
+.project-csr__icon--result {
+  background: rgba(72, 187, 120, 0.1);
+  color: var(--color-success);
+}
+
+.project-csr__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.project-csr__item h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.project-csr__item p {
+  color: var(--color-gray-300);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ------------------------------------------------------------
+   6. Technology Tags
+   ------------------------------------------------------------ */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-tag {
+  display: inline-block;
+  font-family: var(--font-nav);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--color-gray-700);
+  color: var(--color-gray-300);
+  background: var(--color-gray-900);
+  transition: all var(--transition-speed);
+}
+
+.tech-tag:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* ------------------------------------------------------------
+   7. Image Gallery
+   ------------------------------------------------------------ */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+  transition: transform var(--transition-speed);
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+.gallery-item .placeholder-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox__content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+}
+
+.lightbox__content .placeholder-image {
+  width: 70vw;
+  height: 60vh;
+  max-width: 900px;
+  border-radius: var(--card-radius);
+  font-size: 18px;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+  z-index: 2001;
+  border: none;
+}
+
+.lightbox__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox__close svg {
+  width: 24px;
+  height: 24px;
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background var(--transition-speed);
+  border: none;
+}
+
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.lightbox__nav svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lightbox__prev {
+  left: 20px;
+}
+
+.lightbox__next {
+  right: 20px;
+}
+
+.lightbox__counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-nav);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ------------------------------------------------------------
+   8. Related Projects
+   ------------------------------------------------------------ */
+.related-projects h2 {
+  margin-bottom: 32px;
+}
+
+/* ------------------------------------------------------------
+   9. Back Link
+   ------------------------------------------------------------ */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-nav);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-gray-400);
+  transition: color var(--transition-speed);
+  margin-bottom: 24px;
+}
+
+.back-link:hover {
+  color: var(--color-primary);
+}
+
+.back-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ------------------------------------------------------------
+   10. Client Info
+   ------------------------------------------------------------ */
+.project-info {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.project-info__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.project-info__label {
+  font-family: var(--font-nav);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-gray-500);
+}
+
+.project-info__value {
+  color: var(--color-white);
+  font-size: 16px;
+}
+
+/* ------------------------------------------------------------
+   Responsive -- Portfolio Specific
+   ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-csr {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .project-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .page-hero {
+    padding: calc(var(--header-height) + 40px) 0 40px;
+  }
+
+  .filter-bar {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-hero__banner {
+    aspect-ratio: 16 / 9;
+  }
+
+  .project-csr {
+    grid-template-columns: 1fr;
+  }
+
+  .project-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lightbox__content .placeholder-image {
+    width: 90vw;
+    height: 50vh;
+  }
+
+  .lightbox__prev { left: 8px; }
+  .lightbox__next { right: 8px; }
+
+  .project-info {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 479px) {
+  .project-gallery {
+    grid-template-columns: 1fr;
+  }
+}

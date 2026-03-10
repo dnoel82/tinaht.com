@@ -37,6 +37,11 @@
   status = 200
 
 [[redirects]]
+  from = "/portfolio/project"
+  to = "/portfolio/project.html"
+  status = 200
+
+[[redirects]]
   from = "/contact"
   to = "/contact/index.html"
   status = 200
