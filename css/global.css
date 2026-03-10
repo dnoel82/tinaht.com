@@ -1,0 +1,327 @@
+/* ============================================================
+   GLOBAL.CSS -- Tinaht Design System Foundation
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. CSS Custom Properties (Design Tokens)
+   ------------------------------------------------------------ */
+:root {
+  /* Colors */
+  --color-primary: #3296ff;
+  --color-primary-dark: #003174;
+  --color-white: #ffffff;
+  --color-gray-100: #f7fafc;
+  --color-gray-200: #edf2f7;
+  --color-gray-300: #e2e8f0;
+  --color-gray-400: #cbd2d9;
+  --color-gray-500: #718096;
+  --color-gray-700: #2d3748;
+  --color-gray-800: #252c39;
+  --color-gray-900: #1a202c;
+  --color-success: #48bb78;
+  --color-warning: #ecc94b;
+  --color-error: #fc8181;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(130deg, #3296ff 0%, #003174 100%);
+
+  /* Typography -- Font Families */
+  --font-body: 'Libre Baskerville', Georgia, serif;
+  --font-heading: 'Libre Franklin', 'Helvetica Neue', sans-serif;
+  --font-nav: 'Montserrat', 'Arial', sans-serif;
+  --font-h3: 'Roboto Condensed', 'Arial Narrow', sans-serif;
+
+  /* Typography -- Sizes */
+  --fs-body: 17px;
+  --fs-h1: 36px;
+  --fs-h2: 30px;
+  --fs-h3: 22px;
+  --fs-h4: 18px;
+  --fs-site-title: 26px;
+  --fs-nav: 15px;
+  --fs-button: 15px;
+  --fs-small: 13px;
+
+  /* Layout */
+  --max-width: 1290px;
+  --grid-gap-desktop: 24px;
+  --grid-gap-mobile: 16px;
+  --section-padding-desktop: 80px;
+  --section-padding-mobile: 48px;
+
+  /* Component Tokens */
+  --card-radius: 12px;
+  --btn-radius: 8px;
+  --input-radius: 8px;
+  --transition-speed: 0.3s;
+
+  /* Header */
+  --header-height: 72px;
+}
+
+/* ------------------------------------------------------------
+   2. CSS Reset
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Remove animations for people who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   3. Base Typography
+   ------------------------------------------------------------ */
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-gray-200);
+  background-color: var(--color-gray-800);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-white);
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-family: var(--font-h3);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: 1.3;
+  color: var(--color-white);
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h4 { font-size: var(--fs-h4); }
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  color: var(--color-primary);
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--color-white);
+}
+
+strong {
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------
+   4. Utility Classes
+   ------------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: var(--section-padding-desktop) 0;
+}
+
+.section--alt {
+  background-color: var(--color-gray-900);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.section-header h2 {
+  margin-bottom: 12px;
+}
+
+.section-header p {
+  color: var(--color-gray-400);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.section-eyebrow {
+  font-family: var(--font-nav);
+  font-size: var(--fs-nav);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+/* Grid layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--grid-gap-desktop);
+  align-items: center;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap-desktop);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--grid-gap-desktop);
+}
+
+/* Text utilities */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------
+   5. Section Dividers (SVG Wave/Slant)
+   ------------------------------------------------------------ */
+.section-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin-top: -1px;
+}
+
+.section-divider svg {
+  display: block;
+  width: 100%;
+  height: 60px;
+}
+
+.section-divider--flip svg {
+  transform: scaleY(-1);
+}
+
+/* ------------------------------------------------------------
+   6. Scroll Reveal Animations
+   ------------------------------------------------------------ */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-animate="fade-in"] {
+  transform: none;
+}
+
+[data-animate="fade-left"] {
+  transform: translateX(-30px);
+}
+
+[data-animate="fade-right"] {
+  transform: translateX(30px);
+}
+
+[data-animate].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Placeholder images (temporary for development) */
+.placeholder-image {
+  background: var(--color-gray-800);
+  border: 1px dashed var(--color-gray-700);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-500);
+  font-family: var(--font-nav);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}

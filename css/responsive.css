@@ -1,0 +1,180 @@
+/* ============================================================
+   RESPONSIVE.CSS -- Breakpoint Overrides
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Tablet: 768px - 1024px
+   ------------------------------------------------------------ */
+@media (max-width: 1024px) {
+  /* Grids: 3-col -> 2-col */
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Grids: 4-col -> 2-col */
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Footer: 4-col -> 2-col */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  /* Hero: smaller title */
+  .hero__title {
+    font-size: clamp(28px, 4.5vw, 42px);
+  }
+
+  /* About: reduce gap */
+  .about-intro__grid {
+    gap: 32px;
+  }
+
+  /* Nav: reduce spacing */
+  .nav-list {
+    gap: 20px;
+  }
+}
+
+/* ------------------------------------------------------------
+   Mobile: < 768px
+   ------------------------------------------------------------ */
+@media (max-width: 767px) {
+  /* Adjust design tokens for mobile */
+  .section {
+    padding: var(--section-padding-mobile) 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Typography scale down */
+  h1 { font-size: 28px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+
+  /* Navigation: hide desktop, show hamburger */
+  .nav-list-desktop {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* Grids: all single column */
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 80vh;
+  }
+
+  .hero__content {
+    padding: 40px 0;
+  }
+
+  .hero__subtitle {
+    font-size: 16px;
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero__buttons .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* About section: stack vertically */
+  .about-intro__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Service cards */
+  .service-card {
+    padding: 24px 20px;
+  }
+
+  /* Section headers */
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  /* Newsletter */
+  .newsletter-form__group {
+    flex-direction: column;
+  }
+
+  .newsletter-form__btn {
+    width: 100%;
+  }
+
+  /* Testimonials */
+  .testimonial-card {
+    padding: 24px 20px;
+  }
+
+  .testimonial-card__text {
+    font-size: 16px;
+  }
+
+  .testimonial-track {
+    min-height: 320px;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer-bottom-links {
+    justify-content: center;
+  }
+
+  /* SVG dividers: shorter on mobile */
+  .section-divider svg {
+    height: 40px;
+  }
+}
+
+/* ------------------------------------------------------------
+   Small Mobile: < 480px
+   ------------------------------------------------------------ */
+@media (max-width: 479px) {
+  h1 { font-size: 24px; }
+  h2 { font-size: 22px; }
+
+  .hero {
+    min-height: 70vh;
+  }
+
+  .site-logo__text {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 20px 16px;
+  }
+
+  .testimonial-track {
+    min-height: 380px;
+  }
+}
