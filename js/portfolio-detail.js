@@ -106,6 +106,13 @@
       infoEl.innerHTML = infoHTML;
     }
 
+    // Hero banner image
+    var bannerEl = document.getElementById('project-banner');
+    if (bannerEl && project.heroImageUrl) {
+      bannerEl.innerHTML =
+        '<img src="' + escapeHTML(project.heroImageUrl) + '" alt="' + escapeHTML(project.title) + '" style="width:100%;height:100%;object-fit:cover;">';
+    }
+
     // Technologies
     var techEl = document.getElementById('project-tech');
     if (techEl && project.technologies) {
@@ -152,28 +159,22 @@
         '</div>';
     }
 
-    // Gallery (placeholder images since we don't have real images yet)
+    // Gallery images
     var galleryEl = document.getElementById('project-gallery');
     if (galleryEl) {
-      // Create 4 placeholder gallery items
-      galleryImages = [
-        project.title + ' — Overview',
-        project.title + ' — Architecture',
-        project.title + ' — Dashboard',
-        project.title + ' — Results',
-      ];
+      galleryImages = project.gallery && project.gallery.length > 0
+        ? project.gallery
+        : [project.heroImageUrl || ''];
 
       galleryEl.innerHTML = galleryImages
-        .map(function (label, i) {
+        .map(function (url, i) {
+          var label = project.title + ' — Image ' + (i + 1);
           return (
             '<div class="gallery-item" data-index="' + i + '" tabindex="0" role="button" aria-label="View image: ' + escapeHTML(label) + '">' +
-            '  <div class="placeholder-image" style="width:100%;height:100%;">' +
-            '    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
-            '      <rect x="3" y="3" width="18" height="18" rx="2"/>' +
-            '      <circle cx="8.5" cy="8.5" r="1.5"/>' +
-            '      <path d="M21 15l-5-5L5 21"/>' +
-            '    </svg>' +
-            '  </div>' +
+            (url
+              ? '<img src="' + escapeHTML(url) + '" alt="' + escapeHTML(label) + '" loading="lazy">'
+              : '<div class="placeholder-image" style="width:100%;height:100%;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>'
+            ) +
             '</div>'
           );
         })
@@ -214,11 +215,11 @@
           '<article class="card">' +
           '  <a href="project.html?slug=' + encodeURIComponent(p.slug) + '">' +
           '    <div class="card__image">' +
-          '      <div class="placeholder-image" style="width:100%;height:100%;aspect-ratio:16/9;">' +
-          '        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
-          '          <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>' +
-          '        </svg>' +
-          '      </div>' +
+          (p.thumbnailUrl
+            ? '      <img src="' + escapeHTML(p.thumbnailUrl) + '" alt="' + escapeHTML(p.title) + '" loading="lazy">'
+            : '      <div class="placeholder-image" style="width:100%;height:100%;aspect-ratio:16/9;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>'
+          ) +
+          '      <div class="card__image-overlay"></div>' +
           '    </div>' +
           '  </a>' +
           '  <span class="card__tag">' + escapeHTML(p.category) + '</span>' +
@@ -256,14 +257,16 @@
     }
 
     function updateLightbox() {
-      var label = galleryImages[lightboxIndex] || 'Image';
-      lightboxContent.innerHTML =
-        '<div class="placeholder-image">' +
-        '  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
-        '    <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/>' +
-        '  </svg>' +
-        '  <p style="margin-top:12px;font-size:16px;">' + escapeHTML(label) + '</p>' +
-        '</div>';
+      var url = galleryImages[lightboxIndex] || '';
+      if (url) {
+        // Use higher resolution for lightbox
+        var hiResUrl = url.replace(/w=\d+/, 'w=1200');
+        lightboxContent.innerHTML =
+          '<img src="' + escapeHTML(hiResUrl) + '" alt="Gallery image ' + (lightboxIndex + 1) + '" class="lightbox__image">';
+      } else {
+        lightboxContent.innerHTML =
+          '<div class="placeholder-image"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>';
+      }
       lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + galleryImages.length;
     }
 

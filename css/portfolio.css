@@ -140,15 +140,44 @@
   overflow: hidden;
 }
 
-/* Card hover: subtle scale on image */
-.portfolio-card:hover .card__image img,
+/* Card image styles */
+.portfolio-card .card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.portfolio-card .card__image .placeholder-image {
+  transition: transform 0.4s ease;
+}
+
+/* Gradient overlay on card images */
+.card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(26, 32, 44, 0.6) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Card hover: zoom image + show overlay */
+.portfolio-card:hover .card__image img {
+  transform: scale(1.08);
+}
+
 .portfolio-card:hover .card__image .placeholder-image {
   transform: scale(1.05);
 }
 
-.portfolio-card .card__image img,
-.portfolio-card .card__image .placeholder-image {
-  transition: transform 0.4s ease;
+.portfolio-card:hover .card__image-overlay {
+  opacity: 1;
 }
 
 /* Empty state */
@@ -236,6 +265,12 @@
   border-radius: var(--card-radius);
   overflow: hidden;
   aspect-ratio: 21 / 9;
+}
+
+.project-hero__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .project-hero__banner .placeholder-image {
@@ -349,6 +384,18 @@
   transform: scale(1.02);
 }
 
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(1.1);
+}
+
 .gallery-item .placeholder-image {
   width: 100%;
   height: 100%;
@@ -378,6 +425,14 @@
   position: relative;
   max-width: 90vw;
   max-height: 85vh;
+}
+
+.lightbox__image {
+  max-width: 90vw;
+  max-height: 85vh;
+  border-radius: var(--card-radius);
+  object-fit: contain;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .lightbox__content .placeholder-image {
@@ -568,6 +623,11 @@
 
   .project-gallery {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lightbox__image {
+    max-width: 95vw;
+    max-height: 75vh;
   }
 
   .lightbox__content .placeholder-image {

@@ -65,13 +65,11 @@
       encodeURIComponent(project.slug) +
       '" class="card__image-link">' +
       '    <div class="card__image">' +
-      '      <div class="placeholder-image" style="width:100%;height:100%;">' +
-      '        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
-      '          <rect x="3" y="3" width="18" height="18" rx="2"/>' +
-      '          <circle cx="8.5" cy="8.5" r="1.5"/>' +
-      '          <path d="M21 15l-5-5L5 21"/>' +
-      '        </svg>' +
-      '      </div>' +
+      (project.thumbnailUrl
+        ? '      <img src="' + escapeHTML(project.thumbnailUrl) + '" alt="' + escapeHTML(project.title) + '" loading="lazy">'
+        : '      <div class="placeholder-image" style="width:100%;height:100%;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>'
+      ) +
+      '      <div class="card__image-overlay"></div>' +
       '    </div>' +
       '  </a>' +
       '  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">' +
