@@ -21,7 +21,7 @@
   var lightboxIndex = 0;
 
   // ---- Fetch project data ----
-  fetch('/data/projects.json')
+  fetch('../data/projects.json')
     .then(function (res) {
       if (!res.ok) throw new Error('Failed to load');
       return res.json();
@@ -212,7 +212,7 @@
       .map(function (p) {
         return (
           '<article class="card">' +
-          '  <a href="/portfolio/project.html?slug=' + encodeURIComponent(p.slug) + '">' +
+          '  <a href="project.html?slug=' + encodeURIComponent(p.slug) + '">' +
           '    <div class="card__image">' +
           '      <div class="placeholder-image" style="width:100%;height:100%;aspect-ratio:16/9;">' +
           '        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">' +
@@ -224,7 +224,7 @@
           '  <span class="card__tag">' + escapeHTML(p.category) + '</span>' +
           '  <h3 class="card__title">' + escapeHTML(p.title) + '</h3>' +
           '  <p class="card__text">' + escapeHTML(p.shortDescription) + '</p>' +
-          '  <a href="/portfolio/project.html?slug=' + encodeURIComponent(p.slug) + '" class="card__link">View Project &rarr;</a>' +
+          '  <a href="project.html?slug=' + encodeURIComponent(p.slug) + '" class="card__link">View Project &rarr;</a>' +
           '</article>'
         );
       })

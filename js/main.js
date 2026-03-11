@@ -236,7 +236,7 @@
       navLinks.forEach(function (link) {
         link.classList.remove('active');
       });
-      const homeLink = document.querySelector('.nav-list-desktop .nav-list a[href="/"]');
+      const homeLink = document.querySelector('.nav-list-desktop .nav-list a[href="./"]') || document.querySelector('.nav-list-desktop .nav-list a[href="../"]');
       if (homeLink) {
         homeLink.classList.add('active');
       }

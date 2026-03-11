@@ -14,7 +14,7 @@
   let currentFilter = 'all';
 
   // ---- Fetch and Render Projects ----
-  fetch('/data/projects.json')
+  fetch('../data/projects.json')
     .then(function (response) {
       if (!response.ok) throw new Error('Failed to load projects');
       return response.json();
@@ -61,7 +61,7 @@
       '<article class="card portfolio-card" data-category="' +
       escapeHTML(project.category) +
       '">' +
-      '  <a href="/portfolio/project.html?slug=' +
+      '  <a href="project.html?slug=' +
       encodeURIComponent(project.slug) +
       '" class="card__image-link">' +
       '    <div class="card__image">' +
@@ -88,7 +88,7 @@
       '  <p class="card__text">' +
       escapeHTML(project.shortDescription) +
       '</p>' +
-      '  <a href="/portfolio/project.html?slug=' +
+      '  <a href="project.html?slug=' +
       encodeURIComponent(project.slug) +
       '" class="card__link">View Project &rarr;</a>' +
       '</article>'
