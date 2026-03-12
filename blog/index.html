@@ -43,7 +43,7 @@
     <!-- FEATURED ARTICLE -->
     <section class="section">
       <div class="container">
-        <article class="blog-featured" data-animate="fade-up">
+        <article class="blog-featured" data-animate="fade-up" data-category="ai-automation">
           <div class="blog-featured__image">
             <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" alt="AI robot representing workflow automation in business" loading="lazy">
             <div class="blog-featured__image-overlay"></div>
@@ -64,19 +64,19 @@
 
         <!-- CATEGORY TABS -->
         <div class="blog-tabs" data-animate="fade-up">
-          <button class="filter-btn is-active">All</button>
-          <button class="filter-btn">AI &amp; Automation</button>
-          <button class="filter-btn">Hosting &amp; DevOps</button>
-          <button class="filter-btn">Cybersecurity</button>
-          <button class="filter-btn">Web Performance</button>
-          <button class="filter-btn">Industry News</button>
+          <button class="filter-btn is-active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="ai-automation">AI &amp; Automation</button>
+          <button class="filter-btn" data-filter="hosting-devops">Hosting &amp; DevOps</button>
+          <button class="filter-btn" data-filter="cybersecurity">Cybersecurity</button>
+          <button class="filter-btn" data-filter="web-performance">Web Performance</button>
+          <button class="filter-btn" data-filter="industry-news">Industry News</button>
         </div>
 
         <!-- ARTICLE GRID -->
         <div class="grid-3" data-animate="fade-up">
 
           <!-- Article 1 -->
-          <article class="card blog-card">
+          <article class="card blog-card" data-category="hosting-devops">
             <div class="card__image">
               <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80" alt="Server room with blue lighting representing cloud infrastructure" loading="lazy">
               <div class="card__image-overlay"></div>
@@ -92,7 +92,7 @@
           </article>
 
           <!-- Article 2 -->
-          <article class="card blog-card">
+          <article class="card blog-card" data-category="cybersecurity">
             <div class="card__image">
               <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80" alt="Digital cybersecurity shield representing zero trust architecture" loading="lazy">
               <div class="card__image-overlay"></div>
@@ -108,7 +108,7 @@
           </article>
 
           <!-- Article 3 -->
-          <article class="card blog-card">
+          <article class="card blog-card" data-category="web-performance">
             <div class="card__image">
               <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="Code on monitor screen representing web performance optimization" loading="lazy">
               <div class="card__image-overlay"></div>
@@ -124,7 +124,7 @@
           </article>
 
           <!-- Article 4 -->
-          <article class="card blog-card">
+          <article class="card blog-card" data-category="ai-automation">
             <div class="card__image">
               <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80" alt="AI chatbot interface on screen" loading="lazy">
               <div class="card__image-overlay"></div>
@@ -140,7 +140,7 @@
           </article>
 
           <!-- Article 5 -->
-          <article class="card blog-card">
+          <article class="card blog-card" data-category="industry-news">
             <div class="card__image">
               <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80" alt="Digital globe with network connections representing edge computing" loading="lazy">
               <div class="card__image-overlay"></div>
@@ -156,7 +156,7 @@
           </article>
 
           <!-- Article 6 -->
-          <article class="card blog-card">
+          <article class="card blog-card" data-category="hosting-devops">
             <div class="card__image">
               <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80" alt="Padlock on keyboard representing SSL/TLS web security" loading="lazy">
               <div class="card__image-overlay"></div>
@@ -197,5 +197,6 @@
     </div>
   </footer>
   <script src="../js/main.js"></script>
+  <script src="../js/blog-filter.js"></script>
 </body>
 </html>
