@@ -127,12 +127,12 @@
       "id": "seed-team-2"
     },
     {
-      "id": "seed-team-3",
-      "name": "Team Hiring",
-      "role": "Position Open",
-      "bio": "We're always looking for talented engineers, developers, and consultants who share our vision for excellence.",
-      "avatarInitials": "TH"
+      "name": "Listave Hiring",
+      "avatarInitials": "LH",
+      "role": "IT Help Desk",
+      "bio": "We're always looking for talented engineers, developers, and consultants who share our vision for excellence. great fit",
+      "id": "seed-team-3"
     }
   ],
-  "publishedAt": "2026-03-13T19:31:17.921Z"
+  "publishedAt": "2026-03-13T19:45:47.499Z"
 }
