@@ -1,0 +1,138 @@
+{
+  "blogs": [
+    {
+      "id": "seed-blog-1",
+      "title": "How AI Workflow Automation Is Transforming Small Business Operations",
+      "category": "ai-automation",
+      "categoryLabel": "AI & Automation",
+      "imageUrl": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+      "description": "Discover how small and mid-sized businesses are leveraging AI-driven workflows to reduce manual tasks, cut costs, and scale operations without adding headcount.",
+      "author": "Djonny Noel",
+      "date": "2026-03-05",
+      "readTime": "8 min read",
+      "featured": true
+    },
+    {
+      "id": "seed-blog-2",
+      "title": "Docker vs. Kubernetes: Choosing the Right Container Strategy",
+      "category": "hosting-devops",
+      "categoryLabel": "Hosting & DevOps",
+      "imageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80",
+      "description": "A practical comparison of container orchestration tools to help you pick the best fit for your infrastructure needs and team size.",
+      "author": "Djonny Noel",
+      "date": "2026-02-28",
+      "readTime": "6 min read",
+      "featured": false
+    },
+    {
+      "id": "seed-blog-3",
+      "title": "Zero Trust Architecture: A Practical Implementation Guide",
+      "category": "cybersecurity",
+      "categoryLabel": "Cybersecurity",
+      "imageUrl": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=600&q=80",
+      "description": "Move beyond perimeter security with a step-by-step guide to implementing zero trust principles in your organization.",
+      "author": "Djonny Noel",
+      "date": "2026-02-20",
+      "readTime": "10 min read",
+      "featured": false
+    },
+    {
+      "id": "seed-blog-4",
+      "title": "Core Web Vitals in 2026: What Changed and How to Optimize",
+      "category": "web-performance",
+      "categoryLabel": "Web Performance",
+      "imageUrl": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+      "description": "Google's latest Core Web Vitals update brings new metrics. Here's what matters for your site speed and SEO rankings.",
+      "author": "Djonny Noel",
+      "date": "2026-02-14",
+      "readTime": "7 min read",
+      "featured": false
+    },
+    {
+      "id": "seed-blog-5",
+      "title": "Building Custom AI Chatbots: From Concept to Deployment",
+      "category": "ai-automation",
+      "categoryLabel": "AI & Automation",
+      "imageUrl": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=600&q=80",
+      "description": "A technical walkthrough of designing, training, and deploying custom AI chatbots that actually solve customer problems.",
+      "author": "Djonny Noel",
+      "date": "2026-02-07",
+      "readTime": "12 min read",
+      "featured": false
+    },
+    {
+      "id": "seed-blog-6",
+      "title": "The Rise of Edge Computing: What It Means for Your Infrastructure",
+      "category": "industry-news",
+      "categoryLabel": "Industry News",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+      "description": "Edge computing is reshaping how businesses think about latency, data processing, and distributed architecture.",
+      "author": "Djonny Noel",
+      "date": "2026-01-30",
+      "readTime": "5 min read",
+      "featured": false
+    },
+    {
+      "id": "seed-blog-7",
+      "title": "SSL/TLS Best Practices: Securing Your Web Applications in 2026",
+      "category": "hosting-devops",
+      "categoryLabel": "Hosting & DevOps",
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=600&q=80",
+      "description": "From certificate management to cipher suites, everything you need to know about modern TLS configuration.",
+      "author": "Djonny Noel",
+      "date": "2026-01-22",
+      "readTime": "9 min read",
+      "featured": false
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "seed-test-1",
+      "quote": "Tinaht transformed our network infrastructure. Their team delivered a solution that exceeded our expectations and reduced our downtime significantly. Highly recommended for any business.",
+      "authorName": "Sarah Mitchell",
+      "role": "CTO",
+      "company": "TechVenture Inc.",
+      "avatarInitials": "SM"
+    },
+    {
+      "id": "seed-test-2",
+      "quote": "The AI automation solutions from Tinaht saved us over 20 hours per week in manual processes. Their team understood our needs from day one and delivered beyond our expectations.",
+      "authorName": "Marcus Johnson",
+      "role": "CEO",
+      "company": "GrowthScale Labs",
+      "avatarInitials": "MJ"
+    },
+    {
+      "id": "seed-test-3",
+      "quote": "Moving to Tinaht's managed hosting was the best decision we made. Zero downtime during migration, Docker deployments are seamless, and their support team is incredibly responsive.",
+      "authorName": "Emily Chen",
+      "role": "VP of Engineering",
+      "company": "DataFlow Systems",
+      "avatarInitials": "EC"
+    }
+  ],
+  "team": [
+    {
+      "id": "seed-team-1",
+      "name": "Djonny Noel",
+      "role": "Founder & Lead Engineer",
+      "bio": "Full-stack engineer and network architect with a passion for building scalable solutions that make a real impact.",
+      "avatarInitials": "DN"
+    },
+    {
+      "id": "seed-team-2",
+      "name": "Team Hiring",
+      "role": "Position Open",
+      "bio": "We're growing! Interested in joining our team? Reach out to us and let's build the future of technology together.",
+      "avatarInitials": "TH"
+    },
+    {
+      "id": "seed-team-3",
+      "name": "Team Hiring",
+      "role": "Position Open",
+      "bio": "We're always looking for talented engineers, developers, and consultants who share our vision for excellence.",
+      "avatarInitials": "TH"
+    }
+  ],
+  "publishedAt": "2026-03-13T00:00:00.000Z"
+}

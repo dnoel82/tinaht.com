@@ -102,24 +102,25 @@
   }
 
   // ---- Module 4: Testimonials Carousel ----
-  const carousel = document.querySelector('.testimonials-carousel');
+  // Exposed as window.TinahtCarousel so home-render.js can re-init
+  // after async DOM replacement.
 
-  if (carousel) {
+  function initCarousel() {
+    const carousel = document.querySelector('.testimonials-carousel');
+    if (!carousel) return;
+
     const slides = carousel.querySelectorAll('.testimonial-slide');
     const dots = carousel.querySelectorAll('.testimonial-dot');
+    if (slides.length === 0 || dots.length === 0) return;
+
     let currentSlide = 0;
     let autoAdvanceTimer = null;
 
     function goToSlide(index) {
-      // Remove active from current
       slides[currentSlide].classList.remove('is-active');
       dots[currentSlide].classList.remove('is-active');
       dots[currentSlide].setAttribute('aria-selected', 'false');
-
-      // Update index
       currentSlide = index;
-
-      // Add active to new
       slides[currentSlide].classList.add('is-active');
       dots[currentSlide].classList.add('is-active');
       dots[currentSlide].setAttribute('aria-selected', 'true');
@@ -141,7 +142,6 @@
       }
     }
 
-    // Dot click handlers
     dots.forEach(function (dot, index) {
       dot.addEventListener('click', function () {
         stopAutoAdvance();
@@ -150,11 +150,9 @@
       });
     });
 
-    // Pause on hover
     carousel.addEventListener('mouseenter', stopAutoAdvance);
     carousel.addEventListener('mouseleave', startAutoAdvance);
 
-    // Touch/swipe support
     let touchStartX = 0;
     let touchEndX = 0;
 
@@ -175,10 +173,8 @@
 
         if (Math.abs(diff) > 50) {
           if (diff > 0) {
-            // Swipe left -> next
             goToSlide((currentSlide + 1) % slides.length);
           } else {
-            // Swipe right -> prev
             goToSlide((currentSlide - 1 + slides.length) % slides.length);
           }
         }
@@ -187,7 +183,6 @@
       { passive: true }
     );
 
-    // Keyboard navigation
     carousel.addEventListener('keydown', function (e) {
       if (e.key === 'ArrowLeft') {
         stopAutoAdvance();
@@ -200,14 +195,17 @@
       }
     });
 
-    // Start auto-advance
     startAutoAdvance();
 
-    // Respect reduced motion preference
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       stopAutoAdvance();
     }
   }
+
+  initCarousel();
+
+  // Expose for re-init after async render
+  window.TinahtCarousel = { init: initCarousel };
 
   // ---- Module 5: Active Nav Highlight ----
   const sections = document.querySelectorAll('section[id]');

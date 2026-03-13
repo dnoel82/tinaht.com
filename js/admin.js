@@ -1,11 +1,17 @@
 /* ============================================================
-   ADMIN.JS -- Admin Panel Logic
+   ADMIN.JS -- Admin Panel Logic with GitHub Publish
    ============================================================ */
 (function () {
   'use strict';
 
-  // Admin password — change this to your own password
+  // Admin password
   var ADMIN_PASS = 'WfV8fMMeVRcQyzZNHvxo';
+
+  // GitHub config
+  var GH_OWNER = 'dnoel82';
+  var GH_REPO  = 'tinaht';
+  var GH_FILE  = 'data/content.json';
+  var GH_BRANCH = 'main';
 
   var currentTab = 'blogs';
   var editingId = null;
@@ -33,6 +39,13 @@
   var confirmCancel = document.getElementById('confirm-cancel');
   var confirmDelete = document.getElementById('confirm-delete');
   var tabButtons = document.querySelectorAll('.admin-tabs .filter-btn');
+
+  // Publish DOM
+  var publishBtn = document.getElementById('publish-btn');
+  var publishStatus = document.getElementById('publish-status');
+  var githubSetupBtn = document.getElementById('github-setup-btn');
+  var githubSetupModal = document.getElementById('github-setup-modal');
+  var githubSetupForm = document.getElementById('github-setup-form');
 
   // ── Utilities ──────────────────────────────────────────────
 
@@ -67,9 +80,18 @@
     }, 3000);
   }
 
-  // Password check
   function checkPassword(password) {
     return password === ADMIN_PASS;
+  }
+
+  // ── GitHub Token Management ──────────────────────────────
+
+  function getGitHubToken() {
+    return localStorage.getItem('tinaht_gh_token') || '';
+  }
+
+  function setGitHubToken(token) {
+    localStorage.setItem('tinaht_gh_token', token);
   }
 
   // ── Authentication ─────────────────────────────────────────
@@ -84,6 +106,7 @@
     gate.classList.add('is-hidden');
     adminBody.classList.add('is-visible');
     renderList();
+    updatePublishStatus();
   }
 
   function logout() {
@@ -184,7 +207,6 @@
 
     contentGrid.innerHTML = html;
 
-    // Bind edit/delete buttons
     contentGrid.querySelectorAll('[data-edit]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var id = btn.getAttribute('data-edit');
@@ -315,7 +337,6 @@
     modalForm.innerHTML = html;
     modal.classList.add('is-open');
 
-    // Bind cancel buttons in modal
     modalForm.querySelectorAll('.admin-modal-cancel').forEach(function (btn) {
       btn.addEventListener('click', closeModal);
     });
@@ -372,7 +393,6 @@
     renderList();
   });
 
-  // Close modal on backdrop click or X button
   modal.querySelector('.admin-modal__backdrop').addEventListener('click', closeModal);
   modal.querySelector('.admin-modal__close').addEventListener('click', closeModal);
 
@@ -389,7 +409,13 @@
   });
 
   confirmDelete.addEventListener('click', function () {
-    if (deleteId) {
+    if (deleteId === '__clear_all__') {
+      TinahtData.clearAll();
+      showToast('All data cleared', 'success');
+      deleteId = null;
+      confirmDialog.classList.remove('is-open');
+      renderList();
+    } else if (deleteId) {
       TinahtData.remove(currentTab, deleteId);
       showToast('Item deleted', 'success');
       deleteId = null;
@@ -445,18 +471,6 @@
     deleteId = '__clear_all__';
     confirmMessage.textContent = 'Are you sure you want to clear ALL data? This will remove all blogs, testimonials, and team members. Public pages will revert to hardcoded content.';
     confirmDialog.classList.add('is-open');
-  });
-
-  // Override confirm delete to handle clear-all
-  var origConfirmHandler = confirmDelete.onclick;
-  confirmDelete.addEventListener('click', function () {
-    if (deleteId === '__clear_all__') {
-      TinahtData.clearAll();
-      showToast('All data cleared', 'success');
-      deleteId = null;
-      confirmDialog.classList.remove('is-open');
-      renderList();
-    }
   });
 
   // ── Seed Defaults ──────────────────────────────────────────
@@ -605,6 +619,124 @@
     renderList();
   });
 
+  // ── Publish to GitHub ──────────────────────────────────────
+
+  function updatePublishStatus() {
+    if (!getGitHubToken()) {
+      publishStatus.textContent = 'No GitHub token set — click GitHub Setup';
+      publishStatus.className = 'admin-publish-status';
+    } else {
+      publishStatus.textContent = 'Ready to publish';
+      publishStatus.className = 'admin-publish-status';
+    }
+  }
+
+  function publishToGitHub() {
+    var token = getGitHubToken();
+    if (!token) {
+      showToast('Set up your GitHub token first', 'error');
+      githubSetupModal.classList.add('is-open');
+      return;
+    }
+
+    publishBtn.disabled = true;
+    publishStatus.textContent = 'Publishing...';
+    publishStatus.className = 'admin-publish-status';
+
+    var content = TinahtData.buildPublishPayload();
+    var apiUrl = 'https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/contents/' + GH_FILE;
+
+    // Step 1: Get current file SHA (needed for update)
+    fetch(apiUrl + '?ref=' + GH_BRANCH, {
+      headers: {
+        'Authorization': 'token ' + token,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    })
+    .then(function (res) {
+      if (res.status === 404) {
+        // File doesn't exist yet — create it
+        return { sha: null };
+      }
+      if (!res.ok) throw new Error('GitHub API error: ' + res.status);
+      return res.json();
+    })
+    .then(function (fileData) {
+      // Step 2: Create or update the file
+      var body = {
+        message: 'Update site content via admin panel',
+        content: btoa(unescape(encodeURIComponent(content))),
+        branch: GH_BRANCH
+      };
+      if (fileData.sha) {
+        body.sha = fileData.sha;
+      }
+
+      return fetch(apiUrl, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'token ' + token,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+    })
+    .then(function (res) {
+      if (!res.ok) {
+        return res.json().then(function (err) {
+          throw new Error(err.message || 'Publish failed');
+        });
+      }
+      return res.json();
+    })
+    .then(function () {
+      publishBtn.disabled = false;
+      publishStatus.textContent = 'Published successfully! Changes will be live in ~1 min.';
+      publishStatus.className = 'admin-publish-status is-success';
+      showToast('Published to live site!', 'success');
+    })
+    .catch(function (err) {
+      publishBtn.disabled = false;
+      publishStatus.textContent = 'Publish failed: ' + err.message;
+      publishStatus.className = 'admin-publish-status is-error';
+      showToast('Publish failed: ' + err.message, 'error');
+    });
+  }
+
+  publishBtn.addEventListener('click', publishToGitHub);
+
+  // ── GitHub Setup Modal ─────────────────────────────────────
+
+  githubSetupBtn.addEventListener('click', function () {
+    var tokenInput = document.getElementById('gh-token');
+    tokenInput.value = getGitHubToken();
+    githubSetupModal.classList.add('is-open');
+  });
+
+  githubSetupModal.querySelector('.admin-modal__backdrop').addEventListener('click', function () {
+    githubSetupModal.classList.remove('is-open');
+  });
+  githubSetupModal.querySelector('.admin-modal__close').addEventListener('click', function () {
+    githubSetupModal.classList.remove('is-open');
+  });
+  githubSetupModal.querySelectorAll('.github-setup-cancel').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      githubSetupModal.classList.remove('is-open');
+    });
+  });
+
+  githubSetupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var token = document.getElementById('gh-token').value.trim();
+    if (token) {
+      setGitHubToken(token);
+      showToast('GitHub token saved', 'success');
+      githubSetupModal.classList.remove('is-open');
+      updatePublishStatus();
+    }
+  });
+
   // ── Keyboard shortcuts ─────────────────────────────────────
 
   document.addEventListener('keydown', function (e) {
@@ -612,6 +744,8 @@
       if (confirmDialog.classList.contains('is-open')) {
         confirmDialog.classList.remove('is-open');
         deleteId = null;
+      } else if (githubSetupModal.classList.contains('is-open')) {
+        githubSetupModal.classList.remove('is-open');
       } else if (modal.classList.contains('is-open')) {
         closeModal();
       }
@@ -619,11 +753,6 @@
   });
 
   // ── Init ───────────────────────────────────────────────────
-
-  // Generate the correct hash on first load — for setup, open console and run:
-  // hashPassword('yourpassword').then(h => console.log(h))
-  // Then replace ADMIN_HASH above with the result.
-  // Default hash is for empty string — change it!
 
   checkAuth();
 

@@ -50,6 +50,13 @@
         <button class="filter-btn" data-tab="team">Team Members</button>
       </div>
 
+      <!-- PUBLISH BAR -->
+      <div class="admin-publish-bar">
+        <button id="publish-btn" class="btn btn-publish">&#x1F680; Publish to Live Site</button>
+        <span id="publish-status" class="admin-publish-status"></span>
+        <button id="github-setup-btn" class="btn btn-secondary btn-sm" title="GitHub Token Setup">&#x2699; GitHub Setup</button>
+      </div>
+
       <!-- ACTION BAR -->
       <div class="admin-actions">
         <button id="add-btn" class="btn btn-primary">+ Add New</button>
@@ -91,7 +98,29 @@
     </div>
   </div>
 
-  <script src="../js/data-manager.js?v=2"></script>
-  <script src="../js/admin.js?v=2"></script>
+  <!-- GITHUB SETUP MODAL -->
+  <div id="github-setup-modal" class="admin-modal">
+    <div class="admin-modal__backdrop"></div>
+    <div class="admin-modal__content">
+      <div class="admin-modal__header">
+        <h2>GitHub Token Setup</h2>
+        <button class="admin-modal__close" aria-label="Close">&times;</button>
+      </div>
+      <form id="github-setup-form" class="admin-form">
+        <div class="form-group">
+          <label for="gh-token">Personal Access Token *</label>
+          <input type="password" id="gh-token" class="form-input" required placeholder="ghp_xxxxxxxxxxxx">
+          <p class="form-hint">Create a token at <a href="https://github.com/settings/tokens/new" target="_blank" style="color:var(--color-primary)">github.com/settings/tokens</a> with <strong>repo</strong> scope.</p>
+        </div>
+        <div class="admin-form__footer">
+          <button type="button" class="btn btn-secondary github-setup-cancel">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Token</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/data-manager.js?v=3"></script>
+  <script src="../js/admin.js?v=3"></script>
 </body>
 </html>

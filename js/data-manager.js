@@ -1,5 +1,7 @@
 /* ============================================================
-   DATA-MANAGER.JS -- Shared localStorage data layer for Tinaht
+   DATA-MANAGER.JS -- Shared data layer for Tinaht
+   Admin uses localStorage for editing; public pages fetch
+   data/content.json so every browser sees the same content.
    ============================================================ */
 (function () {
   'use strict';
@@ -18,12 +20,17 @@
     'industry-news': 'Industry News'
   };
 
+  // ── Published data cache (populated by fetchPublished) ────
+  var _published = null;   // will hold { blogs, testimonials, team }
+
   function generateId() {
     if (typeof crypto !== 'undefined' && crypto.randomUUID) {
       return crypto.randomUUID();
     }
     return 'id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
   }
+
+  // ── localStorage helpers (used by admin) ──────────────────
 
   function getAll(type) {
     var key = KEYS[type];
@@ -108,6 +115,57 @@
     });
   }
 
+  // ── Published-data fetcher (used by public pages) ─────────
+  // Fetches data/content.json once, caches in memory.
+  // Returns a Promise that resolves with { blogs, testimonials, team }.
+
+  function fetchPublished() {
+    if (_published) {
+      return Promise.resolve(_published);
+    }
+
+    // Determine the correct relative path based on page location
+    var basePath = '';
+    if (window.location.pathname.indexOf('/blog') !== -1 ||
+        window.location.pathname.indexOf('/about') !== -1 ||
+        window.location.pathname.indexOf('/admin') !== -1 ||
+        window.location.pathname.indexOf('/contact') !== -1) {
+      basePath = '../';
+    }
+
+    var url = basePath + 'data/content.json?v=' + Date.now();
+
+    return fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error('Failed to fetch content.json');
+        return res.json();
+      })
+      .then(function (data) {
+        _published = data;
+        return data;
+      })
+      .catch(function () {
+        // If fetch fails, return null — pages keep hardcoded HTML
+        return null;
+      });
+  }
+
+  // Helper: get a specific content type from published data (sync, after fetch)
+  function getPublished(type) {
+    if (!_published) return null;
+    return _published[type] || null;
+  }
+
+  // ── Build JSON for publishing to GitHub ───────────────────
+  function buildPublishPayload() {
+    return JSON.stringify({
+      blogs: getAll('blogs') || [],
+      testimonials: getAll('testimonials') || [],
+      team: getAll('team') || [],
+      publishedAt: new Date().toISOString()
+    }, null, 2);
+  }
+
   window.TinahtData = {
     CATEGORIES: CATEGORIES,
     getAll: getAll,
@@ -118,6 +176,9 @@
     getById: getById,
     exportAll: exportAll,
     importAll: importAll,
-    clearAll: clearAll
+    clearAll: clearAll,
+    fetchPublished: fetchPublished,
+    getPublished: getPublished,
+    buildPublishPayload: buildPublishPayload
   };
 })();
