@@ -131,7 +131,7 @@
     }
 
     function startAutoAdvance() {
-      autoAdvanceTimer = setInterval(nextSlide, 5000);
+      autoAdvanceTimer = setInterval(nextSlide, 10000);
     }
 
     function stopAutoAdvance() {
