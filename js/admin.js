@@ -5,7 +5,7 @@
   'use strict';
 
   // SHA-256 hash of password "tinaht2026" — change this to your own password hash
-  var ADMIN_HASH = '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918';
+  var ADMIN_HASH = 'e05c2309ba719875aa795e2ea3894593cee462964874b27629517bf3649ccc0e';
 
   var currentTab = 'blogs';
   var editingId = null;
