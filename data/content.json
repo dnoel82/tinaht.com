@@ -87,12 +87,12 @@
   ],
   "testimonials": [
     {
-      "id": "seed-test-1",
       "quote": "Tinaht transformed our network infrastructure. Their team delivered a solution that exceeded our expectations and reduced our downtime significantly. Highly recommended for any business.",
-      "authorName": "Sarah Mitchell",
+      "authorName": "Josemine Bartelemy",
+      "avatarInitials": "JB",
       "role": "CTO",
-      "company": "TechVenture Inc.",
-      "avatarInitials": "SM"
+      "company": "Tech-info Inc.",
+      "id": "seed-test-1"
     },
     {
       "id": "seed-test-2",
@@ -120,11 +120,11 @@
       "avatarInitials": "DN"
     },
     {
-      "id": "seed-team-2",
-      "name": "Team Hiring",
+      "name": "Team Hiring Noel",
+      "avatarInitials": "TH",
       "role": "Position Open",
-      "bio": "We're growing! Interested in joining our team? Reach out to us and let's build the future of technology together.",
-      "avatarInitials": "TH"
+      "bio": "We're growing! Interested in joining our team? Reach out to us and let's build the future of technology together. (testing)",
+      "id": "seed-team-2"
     },
     {
       "id": "seed-team-3",
@@ -134,5 +134,5 @@
       "avatarInitials": "TH"
     }
   ],
-  "publishedAt": "2026-03-13T00:00:00.000Z"
+  "publishedAt": "2026-03-13T19:31:17.921Z"
 }
